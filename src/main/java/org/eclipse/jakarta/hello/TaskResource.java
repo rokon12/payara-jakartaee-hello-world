@@ -28,7 +28,7 @@ public class TaskResource {
         logger.info("TaskResource.createTask() called with taskDTO: " + taskDTO);
 
         Task task = new Task();
-        task.setInputUrl(taskDTO.getUrl());
+        task.setInputUrl(taskDTO.url());
         Task savedTask = taskRepository.save(task);
 
         return Response.created(URI.create("/tasks/" + savedTask.getTaskId())).build();
