@@ -36,13 +36,11 @@ public class TaskResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
-    }
+    public List<Task> getAllTasks(@QueryParam(value = "status") Status status) {
+        if (status == null) {
+            return taskRepository.findAll();
+        }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Task> getAllTasks(@QueryParam("status") Status status) {
         return taskRepository.findByStatus(status);
     }
 }
